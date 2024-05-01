@@ -23,7 +23,7 @@ public class folderChecker {
     }
     
     public void checkFoldersOlderThanSixMonths() {
-       model.setRowCount(0); // Clear existing table data
+       model.setRowCount(0);
        
        long currentTime = System.currentTimeMillis();
        
@@ -38,7 +38,6 @@ public class folderChecker {
                   long sixMonthsAgo = currentTime - (6 * 30 * 24 * 60 * 60 * 1000); // Calculate 6 months ago
                   
                   if (creationTime < sixMonthsAgo) {
-                        // Add the file to the table or perform any other necessary operations
                         model.addRow(new Object[]{file.getName(), new Date(creationTime)});
                   }
             }
