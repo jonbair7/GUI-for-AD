@@ -27,9 +27,7 @@ public class agentFolderExporter {
     public void processAgentFolders(String folderLocation, agentFolderExporter exporter) {
         File folder = new File(folderLocation);
 
-        // Check if the directory exists
         if (folder.exists() && folder.isDirectory()) {
-            // Traverse directory and process agent folders
             try {
                 Files.walkFileTree(Paths.get(folderLocation), new SimpleFileVisitor<Path>() {
                     @Override
@@ -39,7 +37,6 @@ public class agentFolderExporter {
                             String creationTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(attrs.creationTime().toMillis());
                             String lastAccessTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(attrs.lastAccessTime().toMillis());
 
-                            // Process folder information
                             exporter.export(folderName, creationTime, lastAccessTime);
                         }
                         return FileVisitResult.CONTINUE;
@@ -52,9 +49,8 @@ public class agentFolderExporter {
             System.out.println("Folder does not exist: " + folderLocation);
         }
     }
-        // Method to export folder information
     public void export(String folderName, String creationTime, String lastAccessTime) {
-        // Write folder info to file or perform any other necessary operations
+        
         System.out.println("Exporting folder information...");
         System.out.println("Folder: " + folderName + ", Creation Time: " + creationTime + ", Last Access Time: " + lastAccessTime);
     }
